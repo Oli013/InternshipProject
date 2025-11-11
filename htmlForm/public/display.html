@@ -1,0 +1,205 @@
+
+<html>
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGNOU Grade List</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script><!---this link converts html page to pdf--->
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        .container {
+            display: flexbox;
+
+            padding: 10px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+         img {
+            height: 150px;
+            width: fit-content;
+            
+            float: left;
+        }
+        .header-text {
+            text-align: center;
+            display: inline-block;
+        }
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .info-box {
+            width: 45%;
+            text-align: left;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .sign-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .sign-box {
+            width: 45%;
+            text-align: left;
+        }
+        .sign-box1 {
+            width: 45%;
+            text-align: right;
+        }
+        .footer-text {
+            margin-top: 30px;
+            font-size: 12px;
+        }
+        .notestyle{
+            float: right;
+            justify-content: center;
+           align-items: center;
+        }
+        .textStyle{
+            letter-spacing: 10px;
+            text-decoration: rgb(89, 89, 239);
+        }
+        
+    </style>
+</head>
+<body>
+    <div  id="gradelist">
+        <a href="home.html">
+                <img src="IGNOU.png" alt="IGNOU Logo">
+            </a>
+        <div class="header">
+            
+            <div class="header-text">
+                <h2>INDIRA GANDHI NATIONAL OPEN UNIVERSITY</h2>
+                <h4>GRADE LIST FOR ASSIGNMENTS</h4>
+                <h4  >(To be filled in Duplicate)*<strong class="textStyle" ><span id="month"></span><span id="year"></span> </strong> </h4> 
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-box">
+                <p><strong>Programme: <span id="programme"></span></strong></p>
+                <p><strong>Study Centre Code:</strong><u> 0802</u></p>
+                <p><strong>Place:</strong><u> Dhempe College of Arts & Science, Miramar, Panaji Goa</u></p>
+                <div class="notestyle">
+                <p>Note: 1.Please enter enrollment Nos. in ascending order only</p>
+                <p>2.Enrollment Nos. should consist of 9(nine) DIGITS</p>
+                <p>3.Please award letter grade and marks.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>Assignment No. _______</strong></p>
+                <p><strong>Course Code:</strong><u> <span id="courseCode"></span></u></p>
+                <p><strong>Maximum Marks:</strong><u> 100</u></p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr.No.</th>
+                    <th>Enrollment No.</th>
+                    <th>Name of the candidate</th>
+                    <th>Grade</th>
+                    <th>Marks</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody id="displayDtls"></tbody>
+        </table>
+
+        <div class="sign-section">
+            <div class="sign-box">
+                <p>Signature of the Coordinator __________</p>
+                <p>Date _________</p>
+                <p>Office Stamp</p>
+            </div>
+            <div class="sign-box1">
+                <p>Signature of the Evaluator ____________</p>
+                <p>Date _________________</p>
+                <p>Name & Address: ____________<br>_________________<br>____________________</p>
+            </div>
+        </div>
+
+        <p class="footer-text">First copy meant for RC and Second copy for Study Centre record.</p>
+        
+        
+        <button type="button"  onclick="downloadPDF()">Download</button>
+        <button type="button" onclick="deleteData()" >Delete</button>
+        <a href="printGradeList.html"><button type="button">BACK</button></a>
+    </div>
+
+    <script src="fetch.js"></script>
+    <script>
+
+        
+        function downloadPDF() {
+             const course = document.getElementById("courseCode").textContent.trim();
+             const year = document.getElementById("year").textContent.trim();
+             const month=document.getElementById("month").textContent.trim();
+            const programme=document.getElementById("programme").textContent.trim();
+            const element = document.getElementById("gradelist");
+            const opt = {
+            margin: 0.5,
+            filename: `awardlist ${programme}_${course}_${month}_${year}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+  }
+
+       function deleteData() {
+    const course = document.getElementById("courseCode").textContent.trim();
+    const month = document.getElementById("month").textContent.trim();
+    const year = document.getElementById("year").textContent.trim();
+
+    const confirmDelete = confirm(`Are you sure you want to delete the records for ${course} - ${month} ${year}?`);
+    if (!confirmDelete) {
+        alert("Deletion canceled");
+        return;
+    }
+
+    const query = `/delete?course=${encodeURIComponent(course)}&month=${encodeURIComponent(month)}&year=${encodeURIComponent(year)}`;
+    const request = new XMLHttpRequest();
+    request.open("DELETE", query, true);
+
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            if (request.status === 200) {
+                alert("Record deleted successfully!");
+                const tableBody = document.getElementById("displayDtls");
+                tableBody.innerHTML = "<tr><td colspan='6'>No records found.</td></tr>";
+            } else {
+                alert("Error deleting the data. Please try again.");
+            }
+        }
+    };
+
+    request.send(); 
+}
+
+    </script>
+    
+</body>
+</html>

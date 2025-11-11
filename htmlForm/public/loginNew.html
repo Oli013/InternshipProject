@@ -1,0 +1,109 @@
+<html>
+    <head><title>This is sign up cum sign in page.</title></head>
+    <link rel="stylesheet" type="text/css" href="loginStyle.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<body>
+	<div class="ignou-header">
+  <img src="ignouLogo.png" class="ignou-logo" alt="IGNOU Logo">
+  <div class="ignou-text">
+    <h1>INDIRA GANDHI NATIONAL OPEN UNIVERSITY</h1>
+  </div>
+</div>
+
+<br>
+<div class="container" >
+	<div class="form-container sign-up-container">
+		<form id="signUpForm" action="/signup" method="post">
+			<h1>Create Account</h1>
+			<!-- <div class="social-container">
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div> -->
+			<!-- <span>or use your email for registration</span> -->
+			<input type="text" placeholder="Name" id="userName" name="userName" />
+			<input type="email" placeholder="Email" id="email" name="email"/>
+			<input type="password" placeholder="Password" id="pass" name="pass"/>
+            <input type="number" placeholder="Contact Number" id="Contact" name="Contact"/>
+		
+			
+						Select Role:
+			<div class="role-options">
+			<label>	<input type="radio"  placeholder="Role" name="role"  value="Admin" required> Admin </label>
+			<label> <input type="radio" name="role"  value="Student" required>Student</label>
+
+			</div>
+			 
+
+			
+
+
+			
+			
+			
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form id="signInForm" action="/" method="post">
+			<h1>Sign in</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your account</span>
+			<input type="email" placeholder="Email" name="email"/>
+			<input type="password" placeholder="Password" name="pass"/>
+			<!-- <a href="#">Forgot your password?</a>-still have to add functionality- -->
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To access login with your personal details</p>
+				<button class="ghost" id="signInButton">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello! </h1>
+				<p>Enter your details to register.</p>
+				<button class="ghost" id="signUpButton">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+  document.getElementById("signUpForm").addEventListener("submit",function(event){
+
+            const email=document.getElementById("email").value;
+            const pass=document.getElementById("pass").value;
+            const userName=document.getElementById("userName").value;
+            const Contact=document.getElementById("Contact").value;
+
+            if(!userName || !email || !password || !Contact){
+            event.preventDefault();
+            alert("Enter the required fields.");
+            return;
+             }
+
+     });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".container");
+  const signUpButton = document.getElementById("signUpButton");
+  const signInButton = document.getElementById("signInButton");
+
+  signUpButton.addEventListener("click", () => {
+    container.classList.add("right-panel-active");
+  });
+
+  signInButton.addEventListener("click", () => {
+    container.classList.remove("right-panel-active");
+  });
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>ADD Student Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-image:linear-gradient(to bottom,#003366,#ffffff);
+            }
+           .styling{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            justify-content: center;
+            display:flex;
+            align-items:center;
+            flex-direction: column;
+           
+        }
+        .container{
+            display: flexbox;
+           
+            padding:10px;
+
+
+        }
+         .img1{
+            width:30%;
+            height: auto;
+            
+        }
+        .box1{
+          
+            border-radius: 5%;
+             justify-content: center;
+             display: flex;
+             	display: flex;
+	          font-size: 14px;
+            border-color: black;
+           align-items: center;
+           text-decoration: #ffffff;
+        }
+    
+    .header {
+    background: #7f96cc;
+    height: 50px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #0f5092;
+}
+
+
+@media screen and (max-width: 600px) {
+  .ignou-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ignou-logo {
+    margin: 0 0 10px 0;
+  }
+
+  .ignou-text h1 {
+    font-size: 22px;
+  }
+}
+.ignou-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #003366;
+  width: 100%;
+  height: 30%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ignou-logo {
+  height: 70px;
+  margin-right: 50px;
+
+}
+
+.ignou-text h1 {
+  color: rgb(209, 197, 197);
+  font-size: 38px;
+  font-family: 'Times New Roman', serif;
+  margin: 10px;
+  padding:10px;
+  text-align: center;
+  align-items: center;
+}
+
+.ignou-text h3 {
+  color: rgb(209, 197, 197);
+  font-size:20;
+  font-family: 'Times New Roman', serif;
+  margin: 10px;
+  padding:10px;
+  text-align: center;
+  align-items: center;
+}
+        </style>
+       
+    </head>
+    <body>
+        <div class="ignou-header">
+        <img src="ignouLogo.png" class="ignou-logo" alt="IGNOU Logo">
+        <div class="ignou-text">
+         <h1>INDIRA GANDHI NATIONAL OPEN UNIVERSITY</h1>
+         <h3>PANAJI REGIONAL CENTRE, ALTO PORVORIM-403 521,GOA.</h3>
+        </div>
+        </div>
+<br><br>
+        
+         <div id="alertMessage" style="color: rgba(158, 6, 6, 0.523); display: none; align-items: center;">
+    Lowercase letters are not allowed.
+  </div>
+        </div>
+            <div class="box1" >
+            <form id="addForm" action="/add" method="post" >
+            <h3 style="font-family: 'Times New Roman', Times, serif;font-style: italic;">Add Student Details</h3>
+
+        <div class="form-group">
+                <label for="name">
+                            <strong>NAME:</strong>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Student Name" oninput="validateUpperCase(this)" required>
+                    </label>
+        </div>
+        <div class="form-group">        
+                     <label for="enrolNo">
+                            <strong>ENROLL NO:</strong>
+                            <input type="number" id="enrolNo" name="enrolNo" class="form-control" placeholder="Enrollment No:"  required>
+                    </label>
+        </div>
+         <div class="form-group">
+            <label for="programme">
+                <strong>PROGRAMME: </strong>
+                <input type="" id="programme"name="programme" class="form-control" placeholder="Programme" oninput="validateUpperCase(this)" required>
+            </label>
+
+        </div>
+        <div class="form-group">
+                    <label for="course">
+                            <strong>COURSE:</strong>
+                            <input type="text" id="course" name="course" class="form-control" placeholder="Course Code " oninput="validateUpperCase(this)" required>
+                    </label>
+        </div>
+       
+      <div class="form-group">
+                    <strong>MONTH:</strong>
+                    <div>
+                        <label for="monthJune">
+                            <input type="radio" name="month"  value="JUNE" required> JUNE
+                        </label>
+                        <label for="monthDecember">
+                            <input type="radio" name="month" value="DECEMBER" required> DECEMBER
+                        </label>
+                    </div>
+                </div>
+
+        <div class="form-group">
+                <strong>YEAR: </strong>
+                <div>
+                      <label for="year">
+                        <input type="number" name="year" placeholder="YEAR" class="form-control" id="year" required>
+                      </label>
+
+                </div>
+            </div>
+
+        <div>
+            <button type="submit" class="btn btn-success" >ADD</button>
+             <button type="button" class="btn btn-primary" id="Clear">Clear</button>
+             <button type="button" class="btn" id="Back"><a href="/home">Back</a></button>
+                <p>Please enter only BLOCK LETTERS in all input fields;</p>
+                
+        </div>
+     
+        </div>
+        
+        </form>
+    </div>
+         <script>
+            document.getElementById('Clear').addEventListener('click',()=>{
+                    document.getElementById("addForm").reset();
+                    document.getElementById("alertMessage").style.display="none";
+            });
+            
+          
+            document.getElementById("addForm").addEventListener("submit",function(event){
+            var name=document.getElementById("name").value.trim();
+            var enrolNo=document.getElementById("enrolNo").value.trim();
+            var programme=document.getElementById("programme").value.trim();
+            var course=document.getElementById("course").value.trim();
+            var year=document.getElementById("year").value.trim();
+            var month=document.querySelector('input[name="month"]:checked')?.value;
+
+        //inorder to check that all fields are filled properly.
+
+        if(!name || !enrolNo ||!programme || !course || !year || !month){
+            alert("You need to fill up all fields...");
+            event.preventDefault();
+            return;
+         }
+
+         if(name !==name.toUpperCase()){
+            alert("Name should be in upper case.");
+            event.preventDefault();
+            return;
+         }
+        if(programme !==programme.toUpperCase()){
+            alert("Programme should be upper case");
+            event.preventDefault();
+            return;
+        }
+
+        if(course !==course.toUpperCase()){
+            alert("Course should be upper case");
+            event.preventDefault();
+            return;
+        }
+
+        if(!/^\d{10}$/.test(enrolNo)){
+            alert("Enrollment number should must be exactly 10 digits. ");
+            event.preventDefault();
+            return;
+        }
+
+        if(!/^\d{4}$/.test(year)){
+            alert("Enter a valid year with four digits.");
+            event.preventDefault();
+            return;
+        }
+});
+            function validateUpperCase(input) {
+            var alertMessage = document.getElementById("alertMessage");
+  
+
+            if (input.value !== input.value.toUpperCase()) {
+   
+            alertMessage.style.display = "block";
+    
+ 
+            } else {
+ 
+             alertMessage.style.display = "none";
+            }
+    }
+
+          </script>
+       
+    </body>
+</html>

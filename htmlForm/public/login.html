@@ -1,0 +1,84 @@
+<!-- <html>
+    <head>
+        <title>This is login page.</title>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap">
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+       <body> 
+    
+        <div >
+        
+           <img src="ignouLogo.png" alt="IGNOU Logo">
+        
+        <div class="header">
+            
+            <div class="header-text">
+                <h2>INDIRA GANDHI NATIONAL OPEN UNIVERSITY</h2>
+                
+            </div>
+        </div>
+         <div class="main">
+                <input type="checkbox" id="checkBox" aria-hidden="main">
+                <div class="signup">
+                    <form id="signUpForm" action="/signup" method="post">
+                        <label for="checkBox">SIGN UP </label>
+                        <input type="text" name="userName" id="userName" placeholder="Username" required>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <input type="password" name="pass" id="pass" placeholder="Password" required>
+                        
+                        <select id="selectRole" name="selectRole" required>
+                        <option value="" >Select Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="incharge">InCharge</option>
+                        </select>
+                  
+                        
+                        <button id="btnSignUp"  type="submit">SIGN UP</button>
+
+                    </form>
+                </div>
+                <div class="login">
+                    <form id="loginForm" action="/login" method="post" >
+                        <label for="checkBox" aria-hidden="true"> LOGIN </label>
+                        <input type="email" name="email" id="emailLog" placeholder="Email" required>
+                        <input type="password" name="pass" id="passLog" placeholder="Password" required>
+                        <button id="btnLogin">LOGIN</button>
+                    </form>
+                </div>
+
+
+            </div>
+        
+           </div>
+        <script>
+            document.getElementById("signUpForm").addEventListener("submit",function(event){
+
+            const email=document.getElementById("email").value;
+            const pass=document.getElementById("pass").value;
+            const userName=document.getElementById("userName").value;
+            const selectRole=document.getElementById("selectRole").value;
+
+            if(!userName || !email || !password || role===""){
+            event.preventDefault();
+            alert("Enter the required fields.");
+            return;
+             }
+
+     });
+
+
+  
+
+   
+  
+
+
+
+
+        </script>
+
+       </body>
+
+    
+</html> -->

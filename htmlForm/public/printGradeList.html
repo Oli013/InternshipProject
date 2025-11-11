@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <title>Grade List Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        .styling{
+             font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            justify-content: center;
+            display:flex;
+            align-items:center;
+            flex-direction: column;
+
+        }
+          body{
+           background-image:linear-gradient(to bottom,#7f96cc,#ffffff);
+          ;
+        }
+         .box1{
+          
+            border-radius: 5%;
+             justify-content: center;
+             display: flex;
+            border-color: black;
+           align-items: center;
+           text-decoration: #ffffff;
+          
+          
+        }
+     .btn{
+            width:200px;
+            margin: 10px;
+        }
+       .container {
+            display: flexbox;
+            padding: 10px;
+        }
+        .box1{
+          
+            border-radius: 5%;
+            justify-content: center;
+            display: flex;
+            border-color: black;
+            align-items: center;
+            text-decoration: #ffffff;
+          
+          }
+        .header {
+            background: #7f96cc;
+            height: 150px;
+            padding-top: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #0f5092;
+            }
+
+
+        @media screen and (max-width: 600px) {
+        .ignou-header {
+        flex-direction: column;
+        text-align: center;
+        }
+
+        .ignou-logo {
+        margin: 0 0 10px 0;
+        }
+
+        .ignou-text h1 {
+        font-size: 22px;
+        }
+        }
+        .ignou-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: #003366;
+        width: 100%;
+        height: 30%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        position: relative;
+        }
+
+        .ignou-logo {
+        height: 70px;
+        margin-right: 50px;
+
+        }
+
+        .ignou-text h1 {
+        color: rgb(209, 197, 197);
+        font-size: 38px;
+        font-family: 'Times New Roman', serif;
+        margin: 20px;
+        padding:30px;
+        text-align: center;
+        align-items: center;
+        }
+
+        .ignou-text h3 {
+         color: rgb(209, 197, 197);
+        font-size:20;
+        font-family: 'Times New Roman', serif;
+        margin: 10px;
+        padding:10px;
+        text-align: center;
+        align-items: center;
+        }
+    </style>
+    <body>
+       <div class="ignou-header">
+        <img src="ignouLogo.png" class="ignou-logo" alt="IGNOU Logo">
+        <div class="ignou-text">
+         <h1>INDIRA GANDHI NATIONAL OPEN UNIVERSITY</h1>
+         <h3>PANAJI REGIONAL CENTRE, ALTO PORVORIM-403 521,GOA.</h3>
+        </div>
+        </div>
+<br><br>
+        <div class="box1">
+        <form id ="displayForm">
+   
+            <div class="form-group">
+                <div>
+                    <label for="programme">
+                        <strong> PROGRAMME: </strong>
+                        <input type="text" class="form-control" name="programme" id="programme" placeholder="Programme" required>
+                    </label>
+
+                </div>
+
+            </div>
+       <div class="form-group">
+        <label for="coursecode">
+            <strong>Course:</strong>
+            <input type="text" id="courseCode" name="course" class="form-control" placeholder="Coursecode:" required>
+        </label>
+      
+       </div>
+       
+       <div class="form-group">
+                        <strong>Month:</strong>
+                        <label for="monthJune">
+                            <input type="radio" name="month"  value="JUNE" required> JUNE
+                        </label>
+                        <label for="monthDecember">
+                            <input type="radio" name="month"  value="DECEMBER" required> DECEMBER
+                        </label>
+       </div>
+       <div class="form-group">
+        <strong> YEAR: </strong>
+        <div>
+        <label for="year">
+            <input type="number" name="year" class="form-control" placeholder="Year" id="year" required>
+        </label>
+        </div>
+       </div>
+       <div> 
+                 <button type="button" class=" btn-success btn"  id="btnDisplay">Display</button></a>
+        </div>
+        
+     </form>
+     </div>
+     
+     </div>
+      <div class="styling">
+        <a href="/home">Back to Home:</a>
+      
+        </div>
+     
+     <script >
+       
+        document.getElementById("btnDisplay").addEventListener("click",function(event){
+
+        var course = document.getElementById("courseCode").value.trim();
+        var month = document.querySelector('input[name="month"]:checked')?.value;
+        var year=document.getElementById("year").value;
+        var programme=document.getElementById("programme").value;
+
+        if (!course || !month || !year || !programme) {
+            alert("Please select all the fields.");
+            return;
+        }
+
+       
+        if(programme !==programme.toUpperCase()){
+            alert("Enter a valid programme !!");
+            return;
+        }
+
+        if(course !==course.toUpperCase()){
+            alert("Enter a valid course !!");
+            return;
+        }
+
+        if(!/^\d{4}$/.test(year)){
+            alert("Enter a valid four digit year.");
+            return;
+        }
+       window.location.href = `display.html?course=${encodeURIComponent(course)}&month=${encodeURIComponent(month)}&year=${encodeURIComponent(year)}&programme=${encodeURIComponent(programme)}`;
+        
+        })
+      
+    
+    
+    
+    
+    
+ 
+     </script>
+
+     
+   
+    </body>
+</html>

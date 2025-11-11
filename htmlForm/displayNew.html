@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1024" />
+<title>Grade List — Printable</title>
+
+<style>
+  /* PAGE / PRINT SETUP */
+  @page {
+    size: A4;
+    margin: 22mm 18mm; /* top/right/bottom/left */
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: white;
+  }
+
+  /* BASE TYPOGRAPHY */
+  body {
+    font-family: "Times New Roman", Georgia, serif;
+    color: #000;
+    -webkit-text-size-adjust: none;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .page {
+    width: 210mm;            /* A4 width */
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 4px 0 4px;
+  }
+
+  .logo {
+    width: 110px;
+    height: auto;
+  }
+
+  .title {
+    flex: 1;
+    text-align: center;
+    margin-left: 8px;
+  }
+  .title h1 {
+    margin: 0;
+    font-size: 20.5px;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  .title h2 {
+    margin: 6px 0 0 0;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .title .date-inline {
+    margin-top: 6px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: bold;
+  }
+
+  /* META ROWS (left / right columns) */
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding: 0 4px;
+  }
+  .meta .left, .meta .right {
+    width: 49%;
+    box-sizing: border-box;
+    font-size: 13px;
+  }
+  .meta b { display: inline-block; width: 180px; } /* label width */
+  .meta .right b { width: 120px; }
+
+  /* NOTES */
+  .notes {
+    margin: 18px 6px;
+    font-size: 12px;
+    
+  }
+  .notes p { margin: 6px 0; right: 50px; }
+
+  /* TABLE */
+  .table-wrap {
+    margin: 10px 6px 0 6px;
+  }
+
+  table.grade {
+    border-collapse: collapse;
+    width: calc(100% - 12px);
+    table-layout: fixed;      /* important: fixed columns */
+    font-size: 13px;
+    border: 1px solid #000;
+  }
+
+  /* define fixed column widths */
+  table.grade col.sno  { width: 7%;  }
+  table.grade col.enrol{ width: 26%; }
+  table.grade col.name { width: 40%; }
+  table.grade col.grade{ width: 9%;  }
+  table.grade col.marks{ width: 9%;  }
+  table.grade col.rem  { width: 9%;  }
+
+  table.grade th, table.grade td {
+    border: 1px solid #000;
+    padding: 8px 6px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+  }
+
+  table.grade thead th {
+    font-weight: 700;
+    font-size: 13px;
+    background: white;
+  }
+
+  /* make enrollment in each row left aligned */
+  td.enroll-no { text-align: center; font-family: monospace; letter-spacing: 1px; }
+
+  /* FOOTER signatures */
+  .footer {
+    margin-top: 34px;
+    padding: 0 6px;
+  }
+
+  .sig-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 30px;
+  }
+
+  .sig {
+    width: 32%;
+    min-height: 70px;
+    font-size: 13px;
+  }
+
+  .sig .label {
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* small adjustments for printing to match original look */
+  .underline {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+    min-width: 80px;
+  }
+
+  /* ensure no page-break inside the main table header area */
+  table.grade thead { display: table-header-group; }
+  table.grade tbody { display: table-row-group; }
+
+  /* Hide any outlines or selection */
+  @media screen {
+    body { background: #fff; }
+  }
+
+  .date-row {
+  display: flex;
+  justify-content: center;   /* keeps duplicate in the center */
+  position: relative;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.date-row .month {
+  position: absolute;
+  right: 40px;   /* push towards edge, adjust value */
+  
+}
+
+  
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="left-logo">
+        <!-- put your IGNOU logo file in same folder with name ignou-logo.png -->
+        <img src="IGNOU.png" alt="IGNOU" class="logo">
+      </div>
+      <div class="title">
+        <h1>INDIRA GANDHI NATIONAL OPEN UNIVERSITY</h1>
+        <h2>GRADE LIST FOR ASSIGNMENTS</h2>
+        <div class="date-row">
+  <span class="duplicate">(To be filled in Duplicate)</span>
+  <span class="month">D E C E M B E R&nbsp;2 0 2 5</span>
+</div>
+
+      </div>
+      <div style="width:110px;"></div>
+    </div>
+
+    <div class="meta">
+      <div class="left">
+        <div><b>Programme:</b> COMPUTER</div>
+        <div style="margin-top:6px;"><b>Study Centre Code:</b> 0802</div>
+        <div style="margin-top:6px;"><b>Place:</b> Dhempe College of Arts & Science, Miramar, Panaji Goa</div>
+      </div>
+      <div class="right">
+        <div><b>Assignment No. </b> ________</div>
+        <div style="margin-top:6px;"><b>Course Code:</b> BSC</div>
+        <div style="margin-top:6px;"><b>Maximum Marks:</b> 100</div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <p><b>Note:</b></p>
+      <p>1. Please enter enrollment Nos. in ascending order only.</p>
+      <p>2. Enrollment Nos. should consist of 9 (nine) DIGITS.</p>
+      <p>3. Please award letter grade and marks.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="grade" role="table" aria-label="Grade list">
+        <colgroup>
+          <col class="sno">
+          <col class="enrol">
+          <col class="name">
+          <col class="grade">
+          <col class="marks">
+          <col class="rem">
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th>Sr.No.</th>
+            <th>Enrollment No.</th>
+            <th>Name of the candidate</th>
+            <th>Grade</th>
+            <th>Marks</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Example row (replace with your templating or dynamic insertion) -->
+          <tr>
+            <td>1</td>
+            <td class="enroll-no">1234445563</td>
+            <td>OLIVIA</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <!-- keep empty rows to fill up the page like the original (25 rows shown originally) -->
+          <!-- Add as many rows as you need; they'll have same fixed sizes -->
+          <tr><td>2</td><td class="enroll-no"></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>3</td><td class="enroll-no"></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>4</td><td class="enroll-no"></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>5</td><td class="enroll-no"></td><td></td><td></td><td></td><td></td></tr>
+          <!-- ... repeat until desired rows -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <div class="sig-row">
+        <div class="sig">
+          Signature of the Coordinator
+          <span class="label">Date __________</span>
+        </div>
+
+        <div class="sig" style="text-align:center;">
+          Office Stamp
+        </div>
+
+        <div class="sig" style="text-align:right;">
+          Signature of the Evaluator
+          <span class="label">Date __________</span>
+          <span class="label">Name & Address: __________</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
